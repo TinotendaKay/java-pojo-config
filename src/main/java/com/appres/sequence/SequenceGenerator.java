@@ -15,7 +15,7 @@ public class SequenceGenerator {
     private String prefix;
     private String suffix;
     private int initial;
-    private final AtomicInteger counter = new AtomicInteger();
+    private final AtomicInteger counter = new AtomicInteger(5);
 
     public SequenceGenerator() {
     }
@@ -51,6 +51,15 @@ public class SequenceGenerator {
         builder.append(", suffix=").append(suffix);
         builder.append(", initial=").append(initial);
         builder.append(", counter=").append(counter.getAndIncrement());
+        return builder.toString();
+    }
+    
+    public String getSequence() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(prefix);
+        builder.append(initial);
+        builder.append(counter.getAndIncrement());
+        builder.append(suffix);
         return builder.toString();
     }
     
